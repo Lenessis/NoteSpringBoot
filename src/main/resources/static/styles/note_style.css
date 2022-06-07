@@ -1,0 +1,71 @@
+:root
+{
+    --main-blue: #3498DB;
+    --bg-second: #090979;
+    --bg-third: #19083e;
+    --dark-theme: #161924;
+
+    --bg-note1: #fac275;
+    --bg-note2: #f5aa42;
+
+    --text-color: #FFFFFF;
+    --title-color: #E6FDF8;
+}
+/* -- notes.html -- */
+.add-note-btn
+{
+    position: fixed;
+    top: 18%;
+    right: 8%;
+
+    padding: 10px 20px;
+    background: var(--bg-third);
+    border-radius: 10px;
+
+    color: var(--text-color);
+    text-decoration: none;
+
+    -webkit-box-shadow: 5px 8px 10px -5px rgba(35, 36, 68, 0.9);
+    -moz-box-shadow: 5px 8px 10px -5px rgba(35, 36, 68, 0.9);
+    box-shadow: 5px 8px 10px -5px rgba(35, 36, 68, 0.9);
+
+    transition: .3s ease-in-out;
+}
+
+.add-note-btn:hover
+{
+    color: var(--text-color);
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+.note-container
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /*justify-content: center;*/
+    align-items: flex-start;
+}
+
+.stick-note
+{
+    margin: 20px;
+    padding: 20px;
+    background: linear-gradient(330deg, var(--bg-note2) 30%, var(--bg-note1) 100%);
+
+    color: var(--bg-third);
+
+    -webkit-box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+    -moz-box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+    box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+
+    transition: .5s ease-in-out;
+}
+
+.stick-note:hover
+{
+    transform: scale(1.05);
+}
+
+/* -- notes_add.html -- */

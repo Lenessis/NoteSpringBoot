@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title layout:title-pattern=" $LAYOUT_TITLE - $CONTENT_TITLE">StoreEverything</title>
+        <link rel="icon" th:href="@{/images/notes.png}">
+
+        <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <link rel="stylesheet" th:href="@{/styles/layout_style.css}">
+        <link rel="stylesheet" th:href="@{/styles/note_style.css}">
+    </head>
+
+    <body>
+
+        <header>
+            <nav class="container header-container">
+
+                    <a th:href="@{/}" class="title">
+                        <img id="image" th:src="@{/images/notes.png}" height="100px" width="100px"/>
+                        <p class="header-title">StoreEverything</p>
+                    </a>
+
+                    <ul class="navigation-bar">
+                        <li><a th:href="@{/}" class="navigation-element">Strona Główna</a></li>
+                        <li><a th:href="@{/notes}" class="navigation-element">Notatki</a></li>
+                        <li><a th:href="@{/categories}" class="navigation-element">Kategorie</a></li>
+                        <li><a th:href="@{/authors}" class="navigation-element">Autorzy</a></li>
+                        <li><a th:href="@{/contact}" class="navigation-element">Kontakt</a></li>
+                    </ul>
+
+                    <!-- to zostało jeszcze do poprawy -->
+                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <input type="search" class="form-control form-control-dark" placeholder="Wyszukaj na stronie..." aria-label="Search">
+                    </form>
+
+                    <div class="text-end">
+                        <a class="btn btn-outline-light me-2" th:href="@{/login}">Zaloguj się</a>
+                        <a type="button" class="btn btn-warning" th:href="@{/register}">Zarejestruj się</a>
+                    </div>
+                    <!-- -->
+
+            </nav>
+        </header>
+
+        <main>
+            <section class="page-content" layout:fragment="content">
+                <!-- Content -->
+            </section>
+        </main>
+
+        <footer>
+            <span>&copy; 2022 Company, Inc</span>
+
+            <ul class="nav">
+                <li>
+                    <a class="text-muted social" href="#">
+                        <img th:src="@{/images/facebook.svg}" alt="facebook"/>
+                    </a>
+                </li>
+                &nbsp;
+                <li>
+                    <a class="text-muted  social" href="#">
+                        <img th:src="@{/images/instagram.svg}" alt="instagram"/>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="text-muted  social" href="#">
+                        <img th:src="@{/images/twitter.svg}" alt="twitter"/>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+
+    </body>
+</html>

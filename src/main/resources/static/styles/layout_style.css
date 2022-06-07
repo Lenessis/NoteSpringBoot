@@ -1,0 +1,146 @@
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url("../fonts/roboto-condensed.regular.ttf") format('truetype');
+}
+
+:root
+{
+    --main-blue: #3498DB;
+    --bg-second: #090979;
+    --bg-third: #19083e;
+    --dark-theme: #161924;
+
+    --text-color: #FFFFFF;
+    --title-color: #E6FDF8;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+
+    font-family: "Roboto Condensed", 'serif';
+    color: var(--text-color);
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+header
+{
+    margin: 0;
+    padding: 1rem;
+
+    background: var(--dark-theme);
+}
+
+.header-container
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: start;
+
+}
+
+.title
+{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    text-decoration: none;
+}
+
+.header-title
+{
+    margin: 0 20px 0 0;
+
+    font-size: 50px;
+    color: var(--title-color);
+    transition: .3s ease-in-out;
+}
+
+.header-title:hover
+{
+    color: var(--main-blue);
+}
+
+.navigation-bar
+{
+    margin: 0 30px 0 0;
+    /*padding: 0 10px;*/
+    width: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    list-style: none;
+}
+
+.navigation-element
+{
+    padding: 0 10px;
+    display: block;
+
+    color: var(--text-color);
+    font-size: 18px;
+    text-decoration: none;
+    transition: .2s ease-in-out;
+}
+
+.navigation-element:hover
+{
+    color: var(--main-blue);
+    transform: scale(1.1);
+}
+
+
+main
+{
+    background: linear-gradient(355deg, var(--bg-third) 0%, var(--bg-second) 45%, var(--main-blue) 80%);
+    background-attachment: fixed;
+}
+
+.page-content
+{
+    background: none;
+    margin: 30px auto;
+    width: 80%;
+    text-align: center;
+    font-size: 18px;
+}
+
+footer
+{
+    margin: 0;
+    padding: 20px;
+    width: 100%;
+    min-height: 50px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    background: var(--dark-theme);
+
+
+}
+
+.social
+{
+    padding: 0 5px;
+    display: block;
+    transition: .2s ease-in-out;
+}
+
+.social:hover
+{
+    transform: scale(1.2);
+}
+
+

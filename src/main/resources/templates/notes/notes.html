@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Notatki</title>
+    </head>
+    <body>
+        <section layout:fragment="content">
+
+            <a th:href="@{/notes/add}" class="add-note-btn">Dodaj nową</a>
+
+            <h1>Notatki</h1>
+
+            <div class="note-container">
+
+                <div th:each="note : ${notes}" class="stick-note">
+
+                    <h2 th:text="${note.getTitle()}"></h2>
+                    <p th:text="${note.getContent()}"></p>
+                    <strong><p th:text="${note.getCategory().getName()}"></p></strong>
+                    <p th:text="${note.getDateOfUpload()}"></p>
+
+                </div>
+
+            </div>
+        </section>
+    </body>
+</html>

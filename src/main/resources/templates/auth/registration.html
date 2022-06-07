@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rejestracja</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <h1>Rejestracja</h1>
+
+    <form method="post"> <!-- th:action="@{/notes/add-note}" -->
+
+        <div class="form-group col-6">
+            <label for="userName">Imie</label>
+            <input type="text" class="form-control" id="userName" placeholder="Imię">
+        </div>
+        <div class="form-group col-6">
+            <label for="userSurname">Nazwisko</label>
+            <input type="text" class="form-control" id="userSurname" placeholder="Nazwisko">
+        </div>
+        <div class="form-group col-6">
+            <label for="loginName">Login</label>
+            <input type="text" class="form-control" id="loginName" placeholder="Login">
+        </div>
+        <div class="form-group col-6">
+            <label for="psswdName">Hasło</label>
+            <input type="password" class="form-control" id="psswdName" placeholder="Hasło">
+        </div>
+        <div class="form-group col-6">
+            <label for="confirmPsswdName">Potwierdź hasło</label>
+            <input type="password" class="form-control" id="confirmPsswdName" placeholder="Potwierdź hasło">
+        </div>
+        <div class="form-group col-6">
+            <label for="age">Login</label>
+            <input type="number" class="form-control" id="age" placeholder="Login">
+        </div>
+        <button type="submit" class="btn btn-primary">Zarejestruj</button>
+
+    </form>
+
+
+</section>
+
+</body>
+</html>
