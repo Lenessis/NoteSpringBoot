@@ -1,0 +1,9 @@
+package com.note.noteproject2.repository;
+
+import com.note.noteproject2.model.NoteCategory;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface NoteCategoryRepository extends JpaRepository<NoteCategory,Long> {
+}
