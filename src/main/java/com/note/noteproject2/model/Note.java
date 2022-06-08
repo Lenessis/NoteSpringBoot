@@ -33,4 +33,5 @@ public class Note {
     @JoinColumn(name="categories", nullable = false)
     private NoteCategory category;
 
+
 }

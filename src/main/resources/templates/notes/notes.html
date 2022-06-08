@@ -17,10 +17,12 @@
 
             <div class="note-container">
 
-                <div th:each="note : ${notes}" class="stick-note">
 
-                    <h2 th:text="${note.getTitle()}"></h2>
-                    <p th:text="${note.getContent()}"></p>
+                <div th:each="note : ${ListNote}" class="stick-note">
+
+
+                    <h2 th:text="${note.title}"></h2>
+                    <p th:text="${note.description}"></p>
                     <strong><p th:text="${note.getCategory().getName()}"></p></strong>
                     <p th:text="${note.getDateOfUpload()}"></p>
 

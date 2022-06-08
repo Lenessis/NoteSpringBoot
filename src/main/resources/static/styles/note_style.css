@@ -52,6 +52,7 @@
 {
     margin: 20px;
     padding: 20px;
+    min-width: 200px;
     background: linear-gradient(330deg, var(--bg-note2) 30%, var(--bg-note1) 100%);
 
     color: var(--bg-third);
