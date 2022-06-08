@@ -9,5 +9,5 @@ public interface NoteService {
     List<Note> getAllNotes();
     Note getNoteById(long id);
     void saveNote(Note note);
-    void deleteNoteById(long id); //?
+    void deleteNoteById(long id);
 }

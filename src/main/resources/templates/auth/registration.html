@@ -13,7 +13,7 @@
 
     <h1>Rejestracja</h1>
 
-    <form method="post"> <!-- th:action="@{/notes/add-note}" -->
+    <form method="post" class="form-align"> <!-- th:action="@{/notes/add-note}" -->
 
         <div class="form-group col-6">
             <label for="userName">Imie</label>
@@ -32,14 +32,10 @@
             <input type="password" class="form-control" id="psswdName" placeholder="Hasło">
         </div>
         <div class="form-group col-6">
-            <label for="confirmPsswdName">Potwierdź hasło</label>
-            <input type="password" class="form-control" id="confirmPsswdName" placeholder="Potwierdź hasło">
+            <label for="age">Wiek</label>
+            <input type="number" class="form-control" id="age" placeholder="Wiek">
         </div>
-        <div class="form-group col-6">
-            <label for="age">Login</label>
-            <input type="number" class="form-control" id="age" placeholder="Login">
-        </div>
-        <button type="submit" class="btn btn-primary">Zarejestruj</button>
+        <button type="submit" class="btn btn-primary submit-btn">Zarejestruj</button>
 
     </form>
 
