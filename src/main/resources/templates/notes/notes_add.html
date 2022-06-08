@@ -13,21 +13,20 @@
 
             <h1>Dodaj notatkę</h1>
 
-            <form  th:object="${newNote}" method="post" th:action="@{/notes/add-note}"> <!-- th:action="@{/notes/add-note}" -->
+            <form  th:object="${newNote}" method="post" th:action="@{/notes/add-note}" action="#"> <!-- th:action="@{/notes/add-note}" -->
                 <div class="form-group col-6">
                     <label for="noteName">Nazwa</label>
                     <input th:field="*{title}" type="text" class="form-control" id="noteName" placeholder="Podaj nazwę notatki">
                 </div>
                 <div class="form-group  col-6">
                     <label for="noteDesc">Opis</label>
-                    <input th:field="*{content}"type="text" class="form-control" id="noteDesc" placeholder="Opis Twojej notatki...">
+                    <input th:field="*{description}"type="text" class="form-control" id="noteDesc" placeholder="Opis Twojej notatki...">
                 </div>
 
                 <div class="form-group  col-6">
                     <label >Kategoria</label>
-                    <select class="form-control" >
-                        <option th:each="cat : ${catE}"> <!--th:field="*{category}"-->
-                            <span th:text="${cat.getName()}" th:field="*{category}"></span>
+                    <select class="form-control" th:field="*{category}" >
+                        <option th:each="cat : ${noteCategory}" th:text="${cat.name}"  th:value="${cat.id}">
                         </option>
                     </select>
                 </div>

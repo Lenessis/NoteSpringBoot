@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface NoteService {
     List<Note> getAllNotes();
+    Note getNoteById(long id);
+    void saveNote(Note note);
 }

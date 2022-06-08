@@ -22,9 +22,14 @@
 
 
                     <h2 th:text="${note.title}"></h2>
+                    <p>
+                        <strong th:text="${note.category.name}"></strong>
+                        (<span th:text="${note.dateOfUpload}"></span>)
+                    </p>
                     <p th:text="${note.description}"></p>
-                    <strong><p th:text="${note.getCategory().getName()}"></p></strong>
-                    <p th:text="${note.getDateOfUpload()}"></p>
+                    <p>
+                        <a th:href="@{/notes/update/{id}(id=${note.id})}" class="btn btn-primary">Edytuj</a>
+                    </p>
 
                 </div>
 
