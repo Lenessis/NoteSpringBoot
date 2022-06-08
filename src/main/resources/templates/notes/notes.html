@@ -29,6 +29,7 @@
                     <p th:text="${note.description}"></p>
                     <p>
                         <a th:href="@{/notes/update/{id}(id=${note.id})}" class="btn btn-primary">Edytuj</a>
+                        <a th:href="@{/notes/delete/{id}(id=${note.id})}" class="btn btn-danger">Usuń</a>
                     </p>
 
                 </div>

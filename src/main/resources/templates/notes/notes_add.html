@@ -13,7 +13,11 @@
 
             <h1>Dodaj notatkę</h1>
 
-            <form  th:object="${newNote}" method="post" th:action="@{/notes/add-note}" action="#"> <!-- th:action="@{/notes/add-note}" -->
+            <span class="back-align">
+                <a th:href="@{/notes}" class="btn btn-primary back-btn ">Wróć</a>
+            </span>
+
+            <form  th:object="${newNote}" method="post" th:action="@{/notes/add-note}" action="#" class="form-align">
                 <div class="form-group col-6">
                     <label for="noteName">Nazwa</label>
                     <input th:field="*{title}" type="text" class="form-control" id="noteName" placeholder="Podaj nazwę notatki">
@@ -36,7 +40,7 @@
                     <input th:field="*{dateOfUpload}" type="date" class="form-control" id="noteDate">
                 </div>
 
-                <button type="submit" class="btn btn-primary">Dodaj</button>
+                <button type="submit" class="btn btn-primary submit-btn">Dodaj</button>
             </form>
 
 

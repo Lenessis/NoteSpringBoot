@@ -39,4 +39,9 @@ public class NoteServiceImpl implements NoteService{
         this.noteRepository.save(note);
     }
 
+    @Override
+    public void deleteNoteById(long id) {
+        this.noteRepository.deleteById(id);
+    }
+
 }

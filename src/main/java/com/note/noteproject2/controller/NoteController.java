@@ -7,10 +7,7 @@ import com.note.noteproject2.service.NoteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -48,6 +45,26 @@ public class NoteController {
     {
         // add note to Database
         noteService.saveNote(newNote);
+        return "redirect:/notes";
+    }
+
+    @GetMapping("/update/{id}")
+    public String UpdateNotePage(@PathVariable (value = "id") long id, Model model)
+    {
+        // get note by id
+        Note note = noteService.getNoteById(id);
+
+        // set note as a model attribute
+        model.addAttribute("note", note);
+        model.addAttribute("noteCategory",categoryService.getAllNotesCategory());
+        return "notes/notes_update";
+    }
+
+
+    @GetMapping("/delete/{id}")
+    public String DeleteNotePage(@PathVariable (value = "id") long id)
+    {
+        this.noteService.deleteNoteById(id);
         return "redirect:/notes";
     }
 

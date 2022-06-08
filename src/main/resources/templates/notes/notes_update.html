@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj notatkę</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <h1>Edytuj notatkę</h1>
+
+    <span class="back-align">
+        <a th:href="@{/notes}" class="btn btn-primary back-btn ">Wróć</a>
+    </span>
+
+
+    <form  th:object="${note}" method="post" th:action="@{/notes/add-note}" action="#" class="form-align">
+
+        <!-- hidden input to get id -->
+        <input th:type="hidden" th:field="*{id}"/>
+
+        <div class="form-group col-6">
+            <label for="noteName">Nazwa</label>
+            <input th:field="*{title}" type="text" class="form-control" id="noteName" >
+        </div>
+        <div class="form-group  col-6">
+            <label for="noteDesc">Opis</label>
+            <input th:field="*{description}"type="text" class="form-control" id="noteDesc" >
+        </div>
+
+        <div class="form-group  col-6">
+            <label >Kategoria</label>
+            <select class="form-control" th:field="*{category}" >
+                <option th:each="cat : ${noteCategory}" th:text="${cat.name}"  th:value="${cat.id}">
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group  col-6">
+            <label for="noteDate">Termin</label>
+            <input th:field="*{dateOfUpload}" type="date" class="form-control" id="noteDate">
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-btn">Potwierdź</button>
+    </form>
+
+
+</section>
+</body>
+</html>
