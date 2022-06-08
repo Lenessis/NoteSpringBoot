@@ -7,5 +7,8 @@ import java.util.List;
 
 
 public interface NoteCategoryService {
-    List<NoteCategory> getAllNotesCategory();
+    List<NoteCategory> getAllNoteCategories();
+    NoteCategory getNoteCategoryById(long id);
+    void saveNoteCategory(NoteCategory noteCategory);
+    void deleteNoteCategory(long id);
 }

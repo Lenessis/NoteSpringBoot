@@ -1,0 +1,39 @@
+:root
+{
+    --main-blue: #3498DB;
+    --bg-second: #090979;
+    --bg-third: #19083e;
+    --dark-theme: #161924;
+
+    --bg-note1: #fac275;
+    --bg-note2: #f5aa42;
+
+    --bg-category1: #b262fc;
+    --bg-category2: #6517d4;
+    --shadow-category:#2d1b6e;
+
+    --text-color: #FFFFFF;
+    --title-color: #E6FDF8;
+}
+
+.stick-category
+{
+    margin: 20px;
+    padding: 20px;
+    min-width: 200px;
+    max-width: 350px;
+    background: linear-gradient(350deg, var(--bg-category2) 30%, var(--bg-category1) 100%);
+
+    color: var(--text-color);
+
+    -webkit-box-shadow: 5px 8px 30px -5px var(--shadow-category);
+    -moz-box-shadow: 5px 8px 30px -5px var(--shadow-category);
+    box-shadow: 5px 8px 30px -5px var(--shadow-category);
+
+    transition: .5s ease-in-out;
+}
+
+.stick-category:hover
+{
+    transform: scale(1.05);
+}

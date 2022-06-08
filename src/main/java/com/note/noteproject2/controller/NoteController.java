@@ -2,15 +2,11 @@ package com.note.noteproject2.controller;
 
 import com.note.noteproject2.model.Note;
 import com.note.noteproject2.service.NoteCategoryServiceImpl;
-import com.note.noteproject2.service.NoteService;
 import com.note.noteproject2.service.NoteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/notes")
@@ -36,7 +32,7 @@ public class NoteController {
         // add note Page
         Note note = new Note();
         model.addAttribute("newNote",note);
-        model.addAttribute("noteCategory",categoryService.getAllNotesCategory());
+        model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         return "notes/notes_add";
     }
 
@@ -56,7 +52,7 @@ public class NoteController {
 
         // set note as a model attribute
         model.addAttribute("note", note);
-        model.addAttribute("noteCategory",categoryService.getAllNotesCategory());
+        model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         return "notes/notes_update";
     }
 

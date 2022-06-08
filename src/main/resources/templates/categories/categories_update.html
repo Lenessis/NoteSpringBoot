@@ -6,12 +6,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dodaj kategorię</title>
+    <title>Edytuj kategorię</title>
 </head>
 <body>
 <section layout:fragment="content">
 
-    <h1>Dodaj kategorię</h1>
+    <h1>Edytuj kategorię</h1>
 
     <span class="back-align">
                 <a th:href="@{/categories}" class="btn btn-primary back-btn ">Wróć</a>
@@ -19,11 +19,13 @@
 
     <form  th:object="${category}" th:action="@{/categories/add-category}" action="#" method="post" class="form-align">
 
+        <input th:type="hidden" th:field="*{id}">
+
         <div class="form-group col-6">
             <label for="categoryName">Nazwa</label>
-            <input th:field="*{name}" type="text" class="form-control" id="categoryName" placeholder="Podaj nazwę kategorii">
+            <input th:field="*{name}" type="text" class="form-control" id="categoryName">
         </div>
-        <button type="submit" class="btn btn-primary submit-btn">Dodaj</button>
+        <button type="submit" class="btn btn-primary submit-btn">Potwierdź</button>
 
     </form>
 
