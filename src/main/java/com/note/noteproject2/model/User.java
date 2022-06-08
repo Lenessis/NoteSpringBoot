@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "login"))
 public class User {
 
     @Id
@@ -40,4 +40,12 @@ public class User {
     @JoinColumn(name="roles", nullable = false)
     private Role role;
 
+    public User(String name, String surname, String login, String password, int age, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.age = age;
+        this.role = role;
+    }
 }
