@@ -39,7 +39,7 @@ public class UserRegistrationController {
 
     // --- Registration request
     @PostMapping
-    public String registerUserAccount (@Valid @ModelAttribute("user")UserRegistrationDto userRegistrationDto, Errors errors)
+    public String registerUserAccount (@Valid @ModelAttribute("user") UserRegistrationDto userRegistrationDto, Errors errors)
     {
         if(errors.hasErrors())
         {

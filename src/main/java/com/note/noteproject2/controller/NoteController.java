@@ -71,7 +71,7 @@ public class NoteController {
     }
 
     @PostMapping("/update-note")
-    public String UpdateNote(@Valid @ModelAttribute("newNote") Note newNote, Errors errors, Model model)
+    public String UpdateNote(@Valid @ModelAttribute("note") Note newNote, Errors errors, Model model)
     {
         model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         if(errors.hasErrors())
@@ -81,7 +81,6 @@ public class NoteController {
 
         else
         {
-            // add note to Database
             noteService.saveNote(newNote);
             return "redirect:/notes";
         }
