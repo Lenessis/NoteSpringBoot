@@ -18,7 +18,7 @@
     </span>
 
 
-    <form  th:object="${note}" method="post" th:action="@{/notes/add-note}" action="#" class="form-align">
+    <form  th:object="${note}" method="post" th:action="@{/notes/update-note}" action="#" class="form-align">
 
         <!-- hidden input to get id -->
         <input th:type="hidden" th:field="*{id}"/>
@@ -26,10 +26,12 @@
         <div class="form-group col-6">
             <label for="noteName">Nazwa</label>
             <input th:field="*{title}" type="text" class="form-control" id="noteName" >
+            <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
         </div>
         <div class="form-group  col-6">
             <label for="noteDesc">Opis</label>
             <input th:field="*{description}"type="text" class="form-control" id="noteDesc" >
+            <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
         </div>
 
         <div class="form-group  col-6">
@@ -43,6 +45,7 @@
         <div class="form-group  col-6">
             <label for="noteDate">Termin</label>
             <input th:field="*{dateOfUpload}" type="date" class="form-control" id="noteDate">
+            <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('dateOfUpload')}" th:errors="*{dateOfUpload}"></p>
         </div>
 
         <button type="submit" class="btn btn-primary submit-btn">Potwierdź</button>

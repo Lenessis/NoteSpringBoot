@@ -5,7 +5,10 @@ import com.note.noteproject2.service.NoteCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/categories")
@@ -30,10 +33,17 @@ public class NoteCategoryController {
     }
 
     @PostMapping("/add-category")
-    public String AddCategory(@ModelAttribute("category") NoteCategory category)
+    public String AddCategory(@Valid @ModelAttribute("category") NoteCategory category, Errors errors)
     {
-        this.categoryService.saveNoteCategory(category);
-        return "redirect:/categories";
+        if (errors.hasErrors())
+        {
+            return "categories/categories_add";
+        }
+        else
+        {
+            this.categoryService.saveNoteCategory(category);
+            return "redirect:/categories";
+        }
     }
 
     @GetMapping("/update/{id}")
@@ -42,6 +52,20 @@ public class NoteCategoryController {
            NoteCategory category = this.categoryService.getNoteCategoryById(id);
            model.addAttribute("category", category);
            return "categories/categories_update";
+    }
+
+    @PostMapping("/update-category")
+    public String UpdateCategory(@Valid @ModelAttribute("category") NoteCategory category, Errors errors)
+    {
+        if (errors.hasErrors())
+        {
+            return "categories/categories_update";
+        }
+        else
+        {
+            this.categoryService.saveNoteCategory(category);
+            return "redirect:/categories";
+        }
     }
 
     @GetMapping("/delete/{id}")

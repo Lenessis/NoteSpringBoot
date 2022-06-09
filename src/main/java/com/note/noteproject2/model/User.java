@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 
@@ -22,19 +26,31 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", nullable = false, length = 20) // 3-20 pierwsza duża
+    @NotEmpty(message = "Imię nie może być puste")
+    @Size(min=3, max=20, message = "Imię powinno mieć od 3 do 20 znaków")
+    @Pattern(regexp = "^[A-Z][a-z]+$", message = "Imię powinno sie zaczynac wielką literą")
     private String name;
 
-    @Column(name = "surname", nullable = false, length = 50)
+    @Column(name = "surname", nullable = false, length = 50) //3-50 pierwsza duża
+    @NotEmpty(message = "Nazwisko nie może być puste")
+    @Size(min=3, max=50, message = "Nazwisko powinno mieć od 3 do 50 znaków")
+    @Pattern(regexp = "^[A-Z][a-z]+$", message = "Nazwisko powinno sie zaczynac wielką literą")
     private String surname;
 
-    @Column(name = "login", nullable = false, length = 20)
+    @Column(name = "login", nullable = false, length = 20) // 3-20 male litery
+    @NotEmpty(message = "Login nie może być pusty")
+    @Size(min=3, max=20, message = "Login powinien mieć od 3 do 20 znaków")
+    @Pattern(regexp = "^[a-z0-9]+$", message = "Login powinien zawierać tylko małe litery")
     private String login;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false) // 5+ znakow
+    @NotEmpty(message = "Hasło nie może być puste")
+    @Size(min=5, message = "Hasło musi mieć co najmniej 5 znaków")
     private String password;
 
-    @Column(name = "age", nullable = false, length = 3)
+    @Column(name = "age", nullable = false, length = 3) // min 18 lat
+    @Min(18)
     private int age;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)

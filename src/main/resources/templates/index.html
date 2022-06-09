@@ -12,7 +12,7 @@
 
         <section layout:fragment="content">
             <div >
-               <h1>Witamy w StoreEverything <strong sec:authentication="principal.username"></strong>!</h1>
+               <h1>Witamy w StoreEverything <strong sec:authorize="isAuthenticated()" sec:authentication="principal.username"> </strong>!</h1>
                 <p>
                     Nasza aplikacja umożliwi Ci łatwe notowanie za pomocą paru kliknięć!
                 </p>

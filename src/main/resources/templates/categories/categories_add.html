@@ -22,6 +22,7 @@
         <div class="form-group col-6">
             <label for="categoryName">Nazwa</label>
             <input th:field="*{name}" type="text" class="form-control" id="categoryName" placeholder="Podaj nazwę kategorii">
+            <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error Name</p>
         </div>
         <button type="submit" class="btn btn-primary submit-btn">Dodaj</button>
 

@@ -6,7 +6,11 @@ import com.note.noteproject2.service.NoteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/notes")
@@ -37,11 +41,21 @@ public class NoteController {
     }
 
     @PostMapping("/add-note")
-    public  String AddNote(@ModelAttribute("newNote") Note newNote)
+    public  String AddNote(@Valid @ModelAttribute("newNote") Note newNote, Errors errors, Model model)
     {
-        // add note to Database
-        noteService.saveNote(newNote);
-        return "redirect:/notes";
+        model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
+        if(errors.hasErrors())
+        {
+            return "notes/notes_add";
+        }
+
+        else
+        {
+            // add note to Database
+            noteService.saveNote(newNote);
+            return "redirect:/notes";
+        }
+
     }
 
     @GetMapping("/update/{id}")
@@ -54,6 +68,24 @@ public class NoteController {
         model.addAttribute("note", note);
         model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         return "notes/notes_update";
+    }
+
+    @PostMapping("/update-note")
+    public String UpdateNote(@Valid @ModelAttribute("newNote") Note newNote, Errors errors, Model model)
+    {
+        model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
+        if(errors.hasErrors())
+        {
+            return "notes/notes_update";
+        }
+
+        else
+        {
+            // add note to Database
+            noteService.saveNote(newNote);
+            return "redirect:/notes";
+        }
+
     }
 
 

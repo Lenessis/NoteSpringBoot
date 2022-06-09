@@ -143,4 +143,10 @@ footer
     transform: scale(1.2);
 }
 
+/*VALIDATION*/
+
+.validation-alert
+{
+    margin: 20px auto;
+}
 
