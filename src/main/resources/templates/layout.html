@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <meta charset="UTF-8">
         <title layout:title-pattern=" $LAYOUT_TITLE - $CONTENT_TITLE">StoreEverything</title>
@@ -26,8 +27,8 @@
 
                     <ul class="navigation-bar">
                        <!-- <li><a th:href="@{/}" class="navigation-element">Strona Główna</a></li>-->
-                        <li><a th:href="@{/notes}" class="navigation-element">Notatki</a></li>
-                        <li><a th:href="@{/categories}" class="navigation-element">Kategorie</a></li>
+                        <li><a th:href="@{/notes}" sec:authorize="isAuthenticated()" class="navigation-element">Notatki</a></li>
+                        <li><a th:href="@{/categories}" sec:authorize="isAuthenticated()" class="navigation-element">Kategorie</a></li>
                         <li><a th:href="@{/authors}" class="navigation-element">Autorzy</a></li>
                         <li><a th:href="@{/contact}" class="navigation-element">Kontakt</a></li>
                     </ul>
@@ -38,8 +39,9 @@
                     </form>
 
                     <div class="text-end">
-                        <a class="btn btn-outline-light me-2" th:href="@{/login}">Zaloguj się</a>
-                        <a type="button" class="btn btn-warning" th:href="@{/registration}">Zarejestruj się</a>
+                        <a class="btn btn-outline-light me-2" sec:authorize="isAuthenticated()" th:href="@{/logout}">Wyloguj się</a>
+                        <a class="btn btn-outline-light me-2" sec:authorize="isAnonymous()" th:href="@{/login}">Zaloguj się</a>
+                        <a type="button" class="btn btn-warning" sec:authorize="isAnonymous()" th:href="@{/registration}">Zarejestruj się</a>
                     </div>
                     <!-- -->
 
