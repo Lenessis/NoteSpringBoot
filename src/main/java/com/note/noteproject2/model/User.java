@@ -50,7 +50,7 @@ public class User {
     private String password;
 
     @Column(name = "age", nullable = false, length = 3) // min 18 lat
-    @Min(18)
+    @Min(value = 18, message = "Musisz mieć skończone 18 lat")
     private int age;
 
     @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
