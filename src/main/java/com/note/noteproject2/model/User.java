@@ -11,7 +11,7 @@ import java.util.Collection;
 
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="users", uniqueConstraints = @UniqueConstraint(columnNames = "login"))
@@ -46,6 +46,9 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
 
     private Collection< Role > roles;
+
+    public User()
+    {}
 
     public User(String name, String surname, String login, String password, int age, Collection < Role > roles) {
         this.name = name;
