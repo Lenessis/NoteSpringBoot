@@ -36,7 +36,7 @@ public class User {
     @Column(name = "age", nullable = false, length = 3)
     private int age;
 
-    @ManyToOne(fetch=FetchType.LAZY, optional = false)
+    @ManyToOne(fetch=FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name="roles", nullable = false)
     private Role role;
 

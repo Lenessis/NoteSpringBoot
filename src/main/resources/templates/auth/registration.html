@@ -13,28 +13,38 @@
 
     <h1>Rejestracja</h1>
 
-    <form method="post" class="form-align"> <!-- th:action="@{/notes/add-note}" -->
+    <!-- success message -->
+    <div th:if="${param.success}">
+        <div class="alert alert-success">
+            Gratulacje! Twoje konto zostało pomyślnie utworzone!
+        </div>
+    </div>
+
+    <form th:action="@{/registration}" action="#" method="post" th:object="${user}" class="form-align" >
 
         <div class="form-group col-6">
-            <label for="userName">Imie</label>
-            <input type="text" class="form-control" id="userName" placeholder="Imię">
+            <label for="userName">Imię</label>
+            <input type="text" class="form-control" id="userName" th:field="*{name}" placeholder="Imię" required autofocus="autofocus">
         </div>
         <div class="form-group col-6">
             <label for="userSurname">Nazwisko</label>
-            <input type="text" class="form-control" id="userSurname" placeholder="Nazwisko">
+            <input type="text" class="form-control" id="userSurname" th:field="*{surname}" placeholder="Nazwisko" required autofocus="autofocus">
         </div>
         <div class="form-group col-6">
             <label for="loginName">Login</label>
-            <input type="text" class="form-control" id="loginName" placeholder="Login">
+            <input type="text" class="form-control" id="loginName" th:field="*{login}" placeholder="Login" required autofocus="autofocus">
         </div>
         <div class="form-group col-6">
             <label for="psswdName">Hasło</label>
-            <input type="password" class="form-control" id="psswdName" placeholder="Hasło">
+            <input type="password" class="form-control" id="psswdName" th:field="*{password}" placeholder="Hasło" required autofocus="autofocus">
         </div>
         <div class="form-group col-6">
             <label for="age">Wiek</label>
-            <input type="number" class="form-control" id="age" placeholder="Wiek">
+            <input type="number" class="form-control" id="age" th:field="*{age}" placeholder="Wiek" required autofocus="autofocus">
         </div>
+
+        <!--<input th:type="hidden" >-->
+
         <button type="submit" class="btn btn-primary submit-btn">Zarejestruj</button>
 
     </form>

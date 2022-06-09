@@ -28,7 +28,7 @@ public class StartController {
     @GetMapping("/login")
     public String ShowLoginPage() { return "auth/login"; }
 
-    @GetMapping("/register")
-    public String ShowRegistrationPage() { return "auth/registration"; }
+    /*@GetMapping("/register")
+    public String ShowRegistrationPage() { return "auth/registration"; }*/
 
 }
