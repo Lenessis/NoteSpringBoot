@@ -13,15 +13,29 @@
 
     <h1>Logowanie</h1>
 
-    <form method="post" class="form-align"> <!-- th:action="@{/notes/add-note}" -->
+    <!-- error message -->
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">
+            Nieprawidłowy login lub hasło!
+        </div>
+    </div>
+
+    <!-- logout message -->
+    <div th:if="${param.logout}">
+        <div class="alert alert-info">
+            Zostałeś wylogowany.
+        </div>
+    </div>
+
+    <form th:action="@{/login}" method="post" class="form-align"> <!-- th:action="@{/notes/add-note}" -->
 
         <div class="form-group col-6">
             <label for="userName">Login</label>
-            <input type="text" class="form-control" id="userName" placeholder="Login">
+            <input type="text" class="form-control" id="userName" placeholder="Login" name="login" required autofocus="autofocus">
         </div>
         <div class="form-group col-6">
             <label for="psswdName">Hasło</label>
-            <input type="password" class="form-control" id="psswdName" placeholder="Hasło">
+            <input type="password" class="form-control" id="psswdName" placeholder="Hasło" name="password" required autofocus="autofocus">
         </div>
         <button type="submit" class="btn btn-primary submit-btn">Zaloguj się</button>
 

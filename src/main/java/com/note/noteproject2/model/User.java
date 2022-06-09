@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 
 @Getter
@@ -30,22 +31,28 @@ public class User {
     @Column(name = "login", nullable = false, length = 20)
     private String login;
 
-    @Column(name = "password", nullable = false, length = 30)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "age", nullable = false, length = 3)
     private int age;
 
-    @ManyToOne(fetch=FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name="roles", nullable = false)
-    private Role role;
+    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
 
-    public User(String name, String surname, String login, String password, int age, Role role) {
+    private Collection< Role > roles;
+
+    public User(String name, String surname, String login, String password, int age, Collection < Role > roles) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
         this.age = age;
-        this.role = role;
+        this.roles = roles;
     }
 }

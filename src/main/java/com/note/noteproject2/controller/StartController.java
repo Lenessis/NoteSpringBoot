@@ -25,10 +25,4 @@ public class StartController {
     @GetMapping("/contact")
     public String ShowContact() { return "additional/contact"; }
 
-    @GetMapping("/login")
-    public String ShowLoginPage() { return "auth/login"; }
-
-    /*@GetMapping("/register")
-    public String ShowRegistrationPage() { return "auth/registration"; }*/
-
 }

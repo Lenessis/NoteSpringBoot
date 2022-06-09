@@ -29,9 +29,8 @@ public class UserRegistrationController {
 
     // --- Registration Form page
     @GetMapping
-    public String showRegistrationPage(/*Model model*/)
+    public String showRegistrationPage()
     {
-        /*model.addAttribute("user",new UserRegistrationDto());*/
         return "auth/registration";
     }
 
@@ -41,7 +40,7 @@ public class UserRegistrationController {
     {
 
         userService.save(userRegistrationDto);
-        return "redirect:registration?success";
+        return "redirect:/registration?success";
     }
 
 }
