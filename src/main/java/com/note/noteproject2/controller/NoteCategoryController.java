@@ -18,9 +18,12 @@ public class NoteCategoryController {
     NoteCategoryServiceImpl categoryService;
 
     @GetMapping
-    public String ViewAllCategoryPage(Model model)
+    public String ViewAllCategoryPage(Model model, String keywords)
     {
-        model.addAttribute("categories", this.categoryService.getAllNoteCategories());
+        if(keywords!=null)
+            model.addAttribute("categories", this.categoryService.getNoteCategoriesByKeywords(keywords));
+        else
+            model.addAttribute("categories", this.categoryService.getAllNoteCategories());
         return "categories/categories";
     }
 

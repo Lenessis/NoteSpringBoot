@@ -26,15 +26,12 @@ public class NoteController {
     public String ViewAllNotesPage(Model model, String keywords)
     {
         // list of notes page
-
         if(keywords !=null)
-        {
             model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
-        }
+
         else
-        {
             model.addAttribute("ListNote", noteService.getAllNotes());
-        }
+
         return "notes/notes";
     }
 

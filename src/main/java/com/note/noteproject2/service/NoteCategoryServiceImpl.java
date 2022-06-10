@@ -48,4 +48,9 @@ public class NoteCategoryServiceImpl implements NoteCategoryService{
     public void deleteNoteCategory(long id) {
         this.noteCategoryRepository.deleteById(id);
     }
+
+    @Override
+    public List<NoteCategory> getNoteCategoriesByKeywords(String keywords) {
+        return this.noteCategoryRepository.findByKeywords(keywords);
+    }
 }

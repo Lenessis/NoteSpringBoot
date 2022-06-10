@@ -15,6 +15,11 @@
 
     <h1>Kategorie</h1>
 
+    <form class="form-row-search" th:action="@{/categories}" method="get">
+        <input th:type="search" id="search" name="keywords" class="form-control input-search" placeholder="Wyszukaj kategorię...">
+        <button type="submit" class="btn btn-info search-btn">Szukaj</button>
+    </form>
+
     <div class="note-container">
 
         <div th:each="c : ${categories}" class="stick-category">
