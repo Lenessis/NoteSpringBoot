@@ -110,3 +110,18 @@
 {
     background: var(--dark-theme);
 }
+
+/* -- search bar ---  */
+
+.form-row-search
+{
+    display: flex;
+    width: 60%;
+    margin: auto;
+    align-items: center;
+}
+
+.input-search, .search-btn
+{
+    margin: 10px;
+}

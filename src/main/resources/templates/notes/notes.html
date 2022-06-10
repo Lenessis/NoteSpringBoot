@@ -15,11 +15,15 @@
 
             <h1>Notatki</h1>
 
+            <form class="form-row-search" th:action="@{/notes}" method="get">
+                <input th:type="search" id="search" name="keywords" class="form-control input-search" placeholder="Wyszukaj notatkę...">
+                <button type="submit" class="btn btn-warning search-btn">Szukaj</button>
+            </form>
+
             <div class="note-container">
 
 
                 <div th:each="note : ${ListNote}" class="stick-note">
-
 
                     <h2 th:text="${note.title}"></h2>
                     <p>

@@ -23,10 +23,18 @@ public class NoteController {
 
 
     @GetMapping
-    public String ViewAllNotesPage(Model model)
+    public String ViewAllNotesPage(Model model, String keywords)
     {
         // list of notes page
-        model.addAttribute("ListNote", noteService.getAllNotes());
+
+        if(keywords !=null)
+        {
+            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+        }
+        else
+        {
+            model.addAttribute("ListNote", noteService.getAllNotes());
+        }
         return "notes/notes";
     }
 

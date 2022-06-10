@@ -44,4 +44,9 @@ public class NoteServiceImpl implements NoteService{
         this.noteRepository.deleteById(id);
     }
 
+    @Override
+    public List<Note> getNotesByKeywords(String keywords) {
+        return this.noteRepository.findByKeywords(keywords);
+    }
+
 }

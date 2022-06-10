@@ -10,4 +10,5 @@ public interface NoteService {
     Note getNoteById(long id);
     void saveNote(Note note);
     void deleteNoteById(long id);
+    List<Note> getNotesByKeywords(String keywords);
 }
