@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,7 +17,7 @@ import java.util.Date;
 @Table(name ="notes")
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 public class Note {
 
@@ -35,13 +37,21 @@ public class Note {
     private String description;
 
     //link
-    @NotEmpty(message = "Data nie może być pusta")
+    /*@NotEmpty(message = "Data nie może być pusta")
     private String dateOfUpload; // data dodania dd-mm-yyyy
-    //private Date date = new Date();
+    //private Date date = new Date();*/
+
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    private Date dateOfUpload;
 
     @ManyToOne(fetch=FetchType.LAZY, optional = false)
     @JoinColumn(name="categories", nullable = false)
     private NoteCategory category;
+
+    public Note()
+    {
+        dateOfUpload = new Date();
+    }
 
 
 }
