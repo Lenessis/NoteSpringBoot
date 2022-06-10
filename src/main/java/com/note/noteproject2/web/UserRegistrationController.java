@@ -4,6 +4,7 @@ import com.note.noteproject2.service.UserService;
 import com.note.noteproject2.web.dto.UserRegistrationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,9 +40,9 @@ public class UserRegistrationController {
 
     // --- Registration request
     @PostMapping
-    public String registerUserAccount (@Valid @ModelAttribute("user") UserRegistrationDto userRegistrationDto, Errors errors)
+    public String registerUserAccount (@Valid @ModelAttribute("user") UserRegistrationDto userRegistrationDto, BindingResult bindingResult)
     {
-        if(errors.hasErrors())
+        if(bindingResult.hasErrors())
         {
             return "auth/registration";
         }
