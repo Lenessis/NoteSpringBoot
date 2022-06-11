@@ -23,7 +23,29 @@ public class NoteCategoryController {
         if(keywords!=null)
             model.addAttribute("categories", this.categoryService.getNoteCategoriesByKeywords(keywords));
         else
-            model.addAttribute("categories", this.categoryService.getAllNoteCategories());
+            model.addAttribute("categories", this.categoryService.getAllNoteCategories("name","asc"));
+        return "categories/categories";
+    }
+
+    @GetMapping("/")
+    public String ViewAllCategoryPage(Model model, String keywords,
+                                      @RequestParam ("sortField") String sortField,
+                                      @RequestParam("sortDir") String sortDir)
+    {
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseDir", sortDir.equals("asc")? "desc": "asc");
+
+        if(sortField == null)
+            sortField = "name";
+
+        if(sortDir == null)
+            sortDir = "asc";
+
+        if(keywords!=null)
+            model.addAttribute("categories", this.categoryService.getNoteCategoriesByKeywords(keywords));
+        else
+            model.addAttribute("categories", this.categoryService.getAllNoteCategories(sortField,sortDir));
         return "categories/categories";
     }
 

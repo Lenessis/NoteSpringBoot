@@ -48,17 +48,15 @@ public class NoteController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseDir", sortDir.equals("asc")? "desc": "asc");
 
-        if(sortField == null|| sortDir==null)
-        {
+        if(sortField == null)
             sortField = "title";
+
+        if(sortDir == null)
             sortDir = "asc";
-        }
 
         // list of notes page
         if(keywords !=null)
             model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
-        /*else if (categoryFilter!="null")
-            model.addAttribute("ListNote",noteService.getNotesByCategory(categoryFilter));*/
         else
             model.addAttribute("ListNote", noteService.getAllNotes(sortField,sortDir));
 

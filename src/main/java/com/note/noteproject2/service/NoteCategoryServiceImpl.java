@@ -4,6 +4,7 @@ import com.note.noteproject2.model.Note;
 import com.note.noteproject2.model.NoteCategory;
 import com.note.noteproject2.repository.NoteCategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.OAEPParameterSpec;
@@ -19,6 +20,12 @@ public class NoteCategoryServiceImpl implements NoteCategoryService{
     @Override
     public List<NoteCategory> getAllNoteCategories() {
         return noteCategoryRepository.findAll();
+    }
+
+    @Override
+    public List<NoteCategory> getAllNoteCategories(String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        return noteCategoryRepository.findAll(sort);
     }
 
     @Override

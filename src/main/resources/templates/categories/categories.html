@@ -20,6 +20,9 @@
         <button type="submit" class="btn btn-info search-btn">Szukaj</button>
     </form>
 
+    <div class="form-row-search">
+        <a class="form-row-search btn btn-outline-info search-btn" th:href="@{'/categories/?sortField=name&sortDir='+${reverseDir}}">Sortuj według nazwy kategorii</a>
+    </div>
     <div class="note-container">
 
         <div th:each="c : ${categories}" class="stick-category">

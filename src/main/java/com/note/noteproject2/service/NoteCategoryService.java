@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface NoteCategoryService {
     List<NoteCategory> getAllNoteCategories();
+    List<NoteCategory> getAllNoteCategories(String sortField, String sortDirection);
     NoteCategory getNoteCategoryById(long id);
     void saveNoteCategory(NoteCategory noteCategory);
     void deleteNoteCategory(long id);
