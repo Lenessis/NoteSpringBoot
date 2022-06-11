@@ -25,7 +25,7 @@
                 <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
                 <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
 
-                <form class="form-row-search" th:action="@{/notes}" method="get" >
+                <form class="form-row-search" th:action="@{/notes/categories}" method="get" >
                     <select class="form-control input-search select-category" name="categoryFilter" onchange="this.form.submit()">
                         <option value="null">Wybierz kategorię</option>
                         <option th:each="cat : ${Categories}" th:text="${cat.name}"  th:value="${cat.name}">
@@ -37,8 +37,9 @@
 
             <div class="note-container">
 
+                <div th:if="${ListNote == null}" th:text="Brak notatek"></div>
 
-                <div th:each="note : ${ListNote}" class="stick-note">
+                <div th:unless="${ListNote == null}" th:each="note : ${ListNote}" class="stick-note">
 
                     <h2 th:text="${note.title}"></h2>
                     <p>

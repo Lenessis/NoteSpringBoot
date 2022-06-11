@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/notes")
@@ -59,6 +60,19 @@ public class NoteController {
             model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
         else
             model.addAttribute("ListNote", noteService.getAllNotes(sortField,sortDir));
+
+        return "notes/notes";
+    }
+
+    @GetMapping("/categories")
+    public String ViewAllNotesPage2(Model model, String categoryFilter)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+        List<Note> notes = noteService.getNotesByCategory(categoryFilter);
+        /*if(notes.isEmpty())
+            model.addAttribute("ListNote", null);
+        else*/
+            model.addAttribute("ListNote", notes );
 
         return "notes/notes";
     }
