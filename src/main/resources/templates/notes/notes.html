@@ -37,7 +37,12 @@
 
             <div class="note-container">
 
-                <div th:if="${ListNote == null}" th:text="Brak notatek"></div>
+                <!--<div th:if="${ListNote eq 'noData'}">
+                    <p>Brak notatek</p>
+                </div>-->
+                <h2 class="container" th:text="${ListNote}? '': 'Brak notatek'">
+                   <!-- <p>Brak notatek</p>-->
+                </h2>
 
                 <div th:unless="${ListNote == null}" th:each="note : ${ListNote}" class="stick-note">
 

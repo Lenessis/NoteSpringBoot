@@ -69,9 +69,9 @@ public class NoteController {
     {
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
         List<Note> notes = noteService.getNotesByCategory(categoryFilter);
-        /*if(notes.isEmpty())
+        if(notes.isEmpty())
             model.addAttribute("ListNote", null);
-        else*/
+        else
             model.addAttribute("ListNote", notes );
 
         return "notes/notes";
