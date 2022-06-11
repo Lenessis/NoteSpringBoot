@@ -2,7 +2,9 @@ package com.note.noteproject2.service;
 
 import com.note.noteproject2.model.Note;
 import com.note.noteproject2.repository.NoteRepository;
+import net.bytebuddy.TypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +17,10 @@ public class NoteServiceImpl implements NoteService{
     private NoteRepository noteRepository;
 
     @Override
-    public List<Note> getAllNotes() {
-        return noteRepository.findAll();
+    public List<Note> getAllNotes(String sortField, String sortDirection) {
+
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        return noteRepository.findAll(sort);
     }
 
     @Override
@@ -47,6 +51,16 @@ public class NoteServiceImpl implements NoteService{
     @Override
     public List<Note> getNotesByKeywords(String keywords) {
         return this.noteRepository.findByKeywords(keywords);
+    }
+    /*@Override
+    public List<Note> getNotesByKeywords(String keywords, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
+        return this.noteRepository.findByKeywords(keywords, sort);
+    }*/
+
+    @Override
+    public List<Note> getNotesByCategory(String categoryFilter) { /*wyszukiwanie po kategoriach*/
+        return this.noteRepository.findByCategory(categoryFilter);
     }
 
 }

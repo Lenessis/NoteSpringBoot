@@ -20,6 +20,21 @@
                 <button type="submit" class="btn btn-warning search-btn">Szukaj</button>
             </form>
 
+            <div class="form-row-search">
+                <span>Sortuj według: </span>
+                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
+                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
+
+                <form class="form-row-search" th:action="@{/notes}" method="get" >
+                    <select class="form-control input-search select-category" name="categoryFilter" onchange="this.form.submit()">
+                        <option value="null">Wybierz kategorię</option>
+                        <option th:each="cat : ${Categories}" th:text="${cat.name}"  th:value="${cat.name}">
+                        </option>
+                    </select>
+                </form>
+
+            </div>
+
             <div class="note-container">
 
 
@@ -28,7 +43,6 @@
                     <h2 th:text="${note.title}"></h2>
                     <p>
                         <strong th:text="${note.category.name}"></strong>
-                        <!--(<span th:text="${note.dateOfUpload}"></span>)-->
                         (<span th:text="${#dates.format(note.dateOfUpload, 'dd-MM-yyyy')}"></span>)
                     </p>
                     <p th:text="${note.description}"></p>

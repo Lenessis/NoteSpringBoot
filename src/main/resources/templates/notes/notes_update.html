@@ -30,13 +30,13 @@
         </div>
         <div class="form-group  col-6">
             <label for="noteDesc">Opis</label>
-            <input th:field="*{description}"type="text" class="form-control" id="noteDesc" >
+            <textarea th:field="*{description}"type="text" class="form-control" id="noteDesc" ></textarea>
             <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
         </div>
 
         <div class="form-group  col-6">
             <label >Kategoria</label>
-            <select class="form-control" th:field="*{category}" >
+            <select class="form-control select-category" th:field="*{category}" >
                 <option th:each="cat : ${noteCategory}" th:text="${cat.name}"  th:value="${cat.id}">
                 </option>
             </select>

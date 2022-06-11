@@ -23,14 +23,44 @@ public class NoteController {
 
 
     @GetMapping
-    public String ViewAllNotesPage(Model model, String keywords)
+    public String ViewAllNotesPage(Model model, String keywords/*, String categoryFilter*/)
     {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+
+
         // list of notes page
         if(keywords !=null)
             model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
-
+        /*else if (categoryFilter!="null")
+            model.addAttribute("ListNote",noteService.getNotesByCategory(categoryFilter));*/
         else
-            model.addAttribute("ListNote", noteService.getAllNotes());
+            model.addAttribute("ListNote", noteService.getAllNotes("title", "asc"));
+
+        return "notes/notes";
+    }
+
+    @GetMapping("/")
+    public String ViewAllNotesPage(Model model, String keywords/*, String categoryFilter*/,
+                                   @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseDir", sortDir.equals("asc")? "desc": "asc");
+
+        if(sortField == null|| sortDir==null)
+        {
+            sortField = "title";
+            sortDir = "asc";
+        }
+
+        // list of notes page
+        if(keywords !=null)
+            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+        /*else if (categoryFilter!="null")
+            model.addAttribute("ListNote",noteService.getNotesByCategory(categoryFilter));*/
+        else
+            model.addAttribute("ListNote", noteService.getAllNotes(sortField,sortDir));
 
         return "notes/notes";
     }

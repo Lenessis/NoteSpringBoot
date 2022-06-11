@@ -116,12 +116,34 @@
 .form-row-search
 {
     display: flex;
-    width: 60%;
+    width: 70%;
     margin: auto;
     align-items: center;
+    justify-content: space-around;
 }
 
 .input-search, .search-btn
 {
     margin: 10px;
+}
+
+.btn-sort
+{
+    color: var(--text-color);
+}
+
+.select-category
+{
+    color: var(--text-color);
+    background: transparent !important;
+    border: var(--text-color) 1px solid;
+}
+.select-category:focus
+{
+    color: var(--text-color);
+}
+.select-category>option
+{
+    color: var(--dark-theme);
+    /*background: var(--main-blue);*/
 }
