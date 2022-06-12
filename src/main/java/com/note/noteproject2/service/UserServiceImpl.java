@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService{
                             passwordEncoder.encode(userDTO.getPassword()),
                             userDTO.getAge(),
                             /*roles);*/
-                            Arrays.asList(new Role("USER")));
+                            Arrays.asList(this.roleRepository.findByName("LIMITED_USER")));
 
         return userRepository.save(user);
     }

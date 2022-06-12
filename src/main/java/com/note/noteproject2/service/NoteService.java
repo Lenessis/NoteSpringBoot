@@ -11,5 +11,5 @@ public interface NoteService {
     void saveNote(Note note);
     void deleteNoteById(long id);
     List<Note> getNotesByKeywords(String keywords);
-    List<Note> getNotesByCategory(String categoryFilter); /*wyszukiwanie po kategoriach*/
+    List<Note> getNotesByCategory(String categoryFilter);
 }

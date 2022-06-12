@@ -25,6 +25,8 @@ public class Role {
 
     public Role() {}
 
+    public Role(long id) { this.id = id; }
+
     public Role(String role) {
         this.role = role;
     }

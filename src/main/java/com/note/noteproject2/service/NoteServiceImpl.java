@@ -52,14 +52,9 @@ public class NoteServiceImpl implements NoteService{
     public List<Note> getNotesByKeywords(String keywords) {
         return this.noteRepository.findByKeywords(keywords);
     }
-    /*@Override
-    public List<Note> getNotesByKeywords(String keywords, String sortField, String sortDirection) {
-        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name())? Sort.by(sortField).ascending() : Sort.by(sortField).descending();
-        return this.noteRepository.findByKeywords(keywords, sort);
-    }*/
 
     @Override
-    public List<Note> getNotesByCategory(String categoryFilter) { /*wyszukiwanie po kategoriach*/
+    public List<Note> getNotesByCategory(String categoryFilter) {
         return this.noteRepository.findByCategory(categoryFilter);
     }
 

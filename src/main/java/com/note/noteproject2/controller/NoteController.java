@@ -23,26 +23,26 @@ public class NoteController {
    private NoteCategoryServiceImpl categoryService;
 
 
+   /* -- Default notes page -- */
     @GetMapping
-    public String ViewAllNotesPage(Model model, String keywords/*, String categoryFilter*/)
+    public String ViewAllNotesPage(Model model, String keywords)
     {
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
-
 
         // list of notes page
         if(keywords !=null)
             model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
-        /*else if (categoryFilter!="null")
-            model.addAttribute("ListNote",noteService.getNotesByCategory(categoryFilter));*/
         else
             model.addAttribute("ListNote", noteService.getAllNotes("title", "asc"));
 
         return "notes/notes";
     }
 
+    /* -- Sorted notes page -- */
     @GetMapping("/")
-    public String ViewAllNotesPage(Model model, String keywords/*, String categoryFilter*/,
-                                   @RequestParam("sortField") String sortField, @RequestParam("sortDir") String sortDir)
+    public String ViewAllNotesPage(Model model, String keywords,
+                                   @RequestParam("sortField") String sortField,
+                                   @RequestParam("sortDir") String sortDir)
     {
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
         model.addAttribute("sortField", sortField);
@@ -64,6 +64,7 @@ public class NoteController {
         return "notes/notes";
     }
 
+    /* -- Filtered by category notes page -- */
     @GetMapping("/categories")
     public String ViewAllNotesPage2(Model model, String categoryFilter)
     {
@@ -92,9 +93,7 @@ public class NoteController {
     {
         model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         if(errors.hasErrors())
-        {
             return "notes/notes_add";
-        }
 
         else
         {
@@ -122,9 +121,8 @@ public class NoteController {
     {
         model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         if(errors.hasErrors())
-        {
             return "notes/notes_update";
-        }
+
 
         else
         {
@@ -133,7 +131,6 @@ public class NoteController {
         }
 
     }
-
 
     @GetMapping("/delete/{id}")
     public String DeleteNotePage(@PathVariable (value = "id") long id)

@@ -15,7 +15,6 @@ public interface NoteRepository extends JpaRepository<Note,Long> {
     @Query(value="select * from notes n where n.title like %:keywords% or n.description like %:keywords%", nativeQuery = true)
     List<Note> findByKeywords(@Param("keywords") String keywords);
 
-    /*wyszukiwanie po kategoriach*/
     @Query(value="select * from notes n, categories c where n.categories=c.id and c.name = :categoryFilter", nativeQuery = true)
     List<Note> findByCategory(@Param("categoryFilter") String categoryFilter);
 
