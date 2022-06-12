@@ -27,10 +27,16 @@
 
                     <ul class="navigation-bar">
                        <!-- <li><a th:href="@{/}" class="navigation-element">Strona Główna</a></li>-->
+                        <!--<li><a th:href="@{/notes}" sec:authorize="hasRole('LIMITED_USER')" class="navigation-element">Notatki</a></li>
+                        <li><a th:href="@{/categories}" sec:authorize="hasRole('LIMITED_USER')" class="navigation-element">Kategorie</a></li>
+                        <li><a th:href="@{/notes}" sec:authorize="hasRole('FULL_USER')" class="navigation-element">Notatki</a></li>
+                        <li><a th:href="@{/categories}" sec:authorize="hasRole('FULL_USER')" class="navigation-element">Kategorie</a></li>
+                        <li><a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')" class="navigation-element">Panel admina</a></li>-->
                         <li><a th:href="@{/notes}" sec:authorize="isAuthenticated()" class="navigation-element">Notatki</a></li>
                         <li><a th:href="@{/categories}" sec:authorize="isAuthenticated()" class="navigation-element">Kategorie</a></li>
-                        <li><a th:href="@{/authors}" class="navigation-element">Autorzy</a></li>
-                        <li><a th:href="@{/contact}" class="navigation-element">Kontakt</a></li>
+                        <li><a th:href="@{/admin}" sec:authorize="isAuthenticated()" class="navigation-element">Panel admina</a></li>
+                        <li><a th:href="@{/authors}" sec:authorize="isAnonymous()" class="navigation-element">Autorzy</a></li>
+                        <li><a th:href="@{/contact}" sec:authorize="isAnonymous()" class="navigation-element">Kontakt</a></li>
                     </ul>
 
                     <!-- to zostało jeszcze do poprawy -->
