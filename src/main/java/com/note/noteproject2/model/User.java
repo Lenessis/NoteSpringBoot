@@ -41,7 +41,7 @@ public class User {
     @Column(name = "age", nullable = false, length = 3) // min 18 lat
     private int age;
 
-    @ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch=FetchType.EAGER/*, cascade = CascadeType.ALL*/)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(

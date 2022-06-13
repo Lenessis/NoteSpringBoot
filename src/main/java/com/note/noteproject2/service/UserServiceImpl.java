@@ -15,10 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,20 +38,44 @@ public class UserServiceImpl implements UserService{
     }*/
 
     @Override
-    public User save(UserRegistrationDto userDTO) {
+    public List<User> getAllUsers() {
+        return this.userRepository.findAll();
+    }
 
-        /*ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new Role("USER"));*/
+    @Override
+    public User getUserById(long id) {
+
+        Optional<User> optional = userRepository.findById(id);
+        User user = null;
+        if(optional.isPresent())
+            user = optional.get();
+        else
+            throw new RuntimeException("User for id: " + id +" not found!");
+
+        return user;
+    }
+
+    @Override
+    public void deleteUser(long id) {
+        this.userRepository.deleteById(id);
+    }
+
+    @Override
+    public User save(UserRegistrationDto userDTO) {
 
         User user = new User(userDTO.getName(),
                             userDTO.getSurname(),
                             userDTO.getLogin(),
                             passwordEncoder.encode(userDTO.getPassword()),
                             userDTO.getAge(),
-                            /*roles);*/
                             Arrays.asList(this.roleRepository.findByName("LIMITED_USER")));
 
         return userRepository.save(user);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        this.userRepository.save(user);
     }
 
 

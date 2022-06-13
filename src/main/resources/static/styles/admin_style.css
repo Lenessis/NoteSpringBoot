@@ -1,0 +1,20 @@
+.admin-table
+{
+    color: var(--text-color);
+    border-color: transparent;
+}
+
+.admin-table-header
+{
+    background: var(--dark-theme);
+}
+
+.admin-table-rows
+{
+    background: var(--dark-themeAlpha) ;
+}
+.form-check-input:checked
+{
+    background-color: var(--checkbox-color);
+    border-color: var(--checkbox-color);
+}

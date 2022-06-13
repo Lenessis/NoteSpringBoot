@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Edytuj użytkownika</title>
+</head>
+<body>
+
+    <section layout:fragment="content">
+        <h1 th:text="|Edytuj role użytkownika ${user.login}|"></h1>
+
+        <span class="back-align">
+            <a th:href="@{/admin}" class="btn btn-primary back-btn ">Wróć</a>
+        </span>
+
+        <form th:object="${user}" th:action="@{/admin/update-user}" action="#" method="post" class="form-align">
+
+            <!-- hidden input to get id -->
+            <input th:type="hidden" th:field="*{id}"/>
+            <input th:type="hidden" th:field="*{login}"/>
+            <input th:type="hidden" th:field="*{password}"/>
+            <input th:type="hidden" th:field="*{name}"/>
+            <input th:type="hidden" th:field="*{surname}"/>
+            <input th:type="hidden" th:field="*{age}"/>
+
+            <div class="form-group col-6">
+                <label class="col-4 col-form-label">Roles: </label>
+
+                    <span  th:each="role: ${ListRole}" >
+                        <input type="checkbox" class="form-check-input m-2" th:field="*{roles}"
+                               th:text="${role.role}" th:value="${role.id}"  />
+
+                    </span>
+            </div>
+
+            <button type="submit" class="btn btn-primary submit-btn">Potwierdź</button>
+
+        </form>
+
+    </section>
+
+</body>
+</html>

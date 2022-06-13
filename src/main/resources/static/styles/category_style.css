@@ -1,20 +1,3 @@
-:root
-{
-    --main-blue: #3498DB;
-    --bg-second: #090979;
-    --bg-third: #19083e;
-    --dark-theme: #161924;
-
-    --bg-note1: #fac275;
-    --bg-note2: #f5aa42;
-
-    --bg-category1: #b262fc;
-    --bg-category2: #6517d4;
-    --shadow-category:#2d1b6e;
-
-    --text-color: #FFFFFF;
-    --title-color: #E6FDF8;
-}
 
 .stick-category
 {

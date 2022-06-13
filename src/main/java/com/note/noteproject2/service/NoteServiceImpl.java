@@ -28,13 +28,11 @@ public class NoteServiceImpl implements NoteService{
         Optional<Note> optional = noteRepository.findById(id);
         Note note = null;
         if(optional.isPresent())
-        {
             note = optional.get();
-        }
+
         else
-        {
             throw new RuntimeException("Note for id: " + id +" not found!");
-        }
+
         return note;
     }
 

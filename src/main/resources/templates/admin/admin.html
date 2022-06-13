@@ -11,11 +11,53 @@
 <body>
 
 <section layout:fragment="content">
-    <div >
-        <h1>Panel administratora</h1>
-        <p>
-            To jest panel administratora
-        </p>
+    <div>
+        <h1>Panel administratora</h1> <br><br>
+
+        <!-- success message -->
+        <div th:if="${param.successUpdate}">
+            <div class="alert alert-success">
+                Rola została pomyślnie zmieniona!
+            </div>
+        </div>
+
+        <div th:if="${param.fail}">
+            <div class="alert alert-danger">
+                Wystąpił błąd przy zmianie roli!
+            </div>
+        </div>
+
+        <div th:if="${param.successDelete}">
+            <div class="alert alert-success">
+                Pomyślnie usunięto konto.
+            </div>
+        </div>
+
+        <table class = "table admin-table">
+            <thead>
+                <tr class="admin-table-header" >
+                    <th scope="col">Login</th>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">Wiek</th>
+                    <th scope="col">Role</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user: ${users}" class="admin-table-rows">
+                    <td th:text="${user.login}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.surname}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td th:text="${user.roles}"></td>
+                    <td>
+                        <a th:href="@{/admin/update/{id}(id=${user.id})}" class="btn btn-success">Edytuj</a>
+                        <a th:if="${user.login}" th:href="@{/admin/delete/{id}(id=${user.id})}" class="btn btn-danger">Usuń</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
 </section>
