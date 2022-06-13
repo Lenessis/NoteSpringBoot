@@ -69,18 +69,17 @@ public class UserServiceImpl implements UserService{
             throw new UsernameNotFoundException("Błędny login lub hasło");
         }
 
+        System.out.println(mapRolesToAuthorities(user));
         return new org.springframework.security.core.userdetails.User(user.getLogin(),
                 user.getPassword(), mapRolesToAuthorities(user));
+
     }
 
-    /*private Collection <? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles)
-    {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRole())).collect(Collectors.toList());
-    }*/
     private Collection <? extends GrantedAuthority> mapRolesToAuthorities(User user)
     {
         String[] userRoles = user.getRoles().stream().map((role) -> role.getRole()).toArray(String[]::new);
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(userRoles);
+        System.out.println(authorities);
         return authorities;
     }
 

@@ -79,9 +79,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/authors",
                 "/contact"
         ).permitAll()
-                /*.antMatchers("/admin**").hasRole("ADMIN")
-                .antMatchers("/notes**", "/categories**").hasRole("LIMITED_USER")
-                .antMatchers("/notes**", "/categories**").hasRole("FULL_USER")*/
+                .antMatchers("/admin**").hasAuthority("ADMIN")
+                .antMatchers("/notes**", "/categories**").hasAnyAuthority("LIMITED_USER", "FULL_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
