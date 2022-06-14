@@ -43,9 +43,7 @@ public class UserRegistrationController {
     public String registerUserAccount (@Valid @ModelAttribute("user") UserRegistrationDto userRegistrationDto, BindingResult bindingResult)
     {
         if(bindingResult.hasErrors())
-        {
             return "auth/registration";
-        }
         else
         {
             userService.save(userRegistrationDto);

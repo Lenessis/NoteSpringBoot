@@ -32,14 +32,11 @@
                     <span  th:each="role: ${ListRole}" >
                         <input type="checkbox" class="form-check-input m-2" th:field="*{roles}"
                                th:text="${role.role}" th:value="${role.id}"  />
-
                     </span>
             </div>
 
             <button type="submit" class="btn btn-primary submit-btn">Potwierdź</button>
-
         </form>
-
     </section>
 
 </body>

@@ -26,6 +26,6 @@ public class NoteCategory {
     @Column(name = "name", nullable = false, length = 20) // 3-20 male litery
     @NotEmpty(message = "Nazwa nie powinna być pusta")
     @Size(min=3, max=20, message = "Nazwa kategorii powinna mieć od 3 do 20 znaków")
-    @Pattern(regexp = "^[a-z]+$", message = "Nazwa kategorii powinna zawierać tylko małe litery")
+    @Pattern(regexp = "^[a-z ąćęłńóśźż]+$", message = "Nazwa kategorii powinna zawierać tylko małe litery")
     private String name;
 }

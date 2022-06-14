@@ -29,8 +29,8 @@
 
             <h3 th:text="${c.name}"></h3>
 
-            <p>
-                <a th:href="@{/categories/update/{id}(id=${c.id})}" class="btn btn-info">Edytuj</a>
+            <p sec:authorize="hasAnyAuthority('FULL_USER')">
+                <a th:href="@{/categories/update/{id}(id=${c.id})}" class="btn btn-info" >Edytuj</a>
                 <a th:href="@{/categories/delete/{id}(id=${c.id})}" class="btn btn-warning">Usuń</a>
             </p>
 

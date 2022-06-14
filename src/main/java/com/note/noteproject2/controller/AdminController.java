@@ -49,14 +49,12 @@ public class AdminController {
             userService.updateUser(user);
             return "redirect:/admin?successUpdate";
         }
-
     }
 
     @GetMapping("/delete/{id}")
     public String UpdateUserPage(@PathVariable ("id") long id)
     {
         userService.deleteUser(id);
-
         return "redirect:/admin?successDelete";
     }
 

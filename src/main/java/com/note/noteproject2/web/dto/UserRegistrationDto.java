@@ -20,12 +20,12 @@ public class UserRegistrationDto {
 
     @NotEmpty(message = "Imię nie może być puste")
     @Size(min=3, max=20, message = "Imię powinno mieć od 3 do 20 znaków")
-    @Pattern(regexp = "^[A-Z][a-z]+$", message = "Imię powinno sie zaczynac wielką literą")
+    @Pattern(regexp = "^[A-Z][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]+$", message = "Imię powinno sie zaczynac wielką literą")
     private String name;
 
     @NotEmpty(message = "Nazwisko nie może być puste")
     @Size(min=3, max=50, message = "Nazwisko powinno mieć od 3 do 50 znaków")
-    @Pattern(regexp = "^[A-Z][a-z]+$", message = "Nazwisko powinno sie zaczynac wielką literą")
+    @Pattern(regexp = "^[A-Z][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]+$", message = "Nazwisko powinno sie zaczynac wielką literą")
     private String surname;
 
     @NotEmpty(message = "Login nie może być pusty")
