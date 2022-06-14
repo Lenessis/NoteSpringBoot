@@ -4,6 +4,8 @@ import com.note.noteproject2.model.Note;
 import com.note.noteproject2.service.NoteCategoryServiceImpl;
 import com.note.noteproject2.service.NoteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -82,7 +84,9 @@ public class NoteController {
     public String AddNewNotePage(Model model)
     {
         // add note Page
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Note note = new Note();
+        note.setOwner(auth.getName());
         model.addAttribute("newNote",note);
         model.addAttribute("noteCategory",categoryService.getAllNoteCategories());
         return "notes/notes_add";

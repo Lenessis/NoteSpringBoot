@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
 
 
@@ -48,9 +49,14 @@ public class Note {
     @JoinColumn(name="categories", nullable = false)
     private NoteCategory category;
 
+    private Boolean shared;
+
+    private String owner;
+
     public Note()
     {
         dateOfUpload = new Date();
+        shared = false;
     }
 
 

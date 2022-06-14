@@ -18,4 +18,10 @@ public interface NoteRepository extends JpaRepository<Note,Long> {
     @Query(value="select * from notes n, categories c where n.categories=c.id and c.name = :categoryFilter", nativeQuery = true)
     List<Note> findByCategory(@Param("categoryFilter") String categoryFilter);
 
+    @Query(value = "select * from notes n where n.owner = :owner order by n.title asc", nativeQuery = true)
+    List<Note> findNotesByOwner(String owner);
+
+    @Query(value = "select * from notes n where n.shared = 1", nativeQuery = true)
+    List<Note> findPublicNotes();
+
 }

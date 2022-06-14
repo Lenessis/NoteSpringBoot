@@ -37,12 +37,7 @@
                     </select>
                 </div>
 
-                <!--<div class="form-group  col-6">
-                    <label for="noteDate">Termin</label>
-                    <input th:field="*{dateOfUpload}" type="date" class="form-control" id="noteDate">
-                    <p class="alert alert-danger validation-alert" th:if="${#fields.hasErrors('dateOfUpload')}" th:errors="*{dateOfUpload}">Musisz mieć skończone 18 lat!</p>
-                    &lt;!&ndash; tymczasowy brak walidacji! Tego pola nie powinno tutaj być &ndash;&gt;
-                </div>-->
+                <input th:type="hidden" th:field="*{owner}"/>
 
                 <button type="submit" class="btn btn-primary submit-btn">Dodaj</button>
             </form>
