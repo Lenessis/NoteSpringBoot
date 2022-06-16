@@ -48,10 +48,10 @@
                         (<span th:text="${#dates.format(note.dateOfUpload, 'dd-MM-yyyy')}"></span>)
                     </p>
                     <p th:text="${note.description}"></p>
-                    <p>
+                    <!--<p>
                         <b>Właściciel: </b>
                         <span th:text="${note.owner}"></span>
-                    </p>
+                    </p>-->
                     <p sec:authorize="hasAnyAuthority('FULL_USER')">
                         <a th:href="@{/notes/update/{id}(id=${note.id})}" class="btn btn-primary">Edytuj</a>
                         <a th:href="@{/notes/delete/{id}(id=${note.id})}" class="btn btn-danger">Usuń</a>

@@ -1,5 +1,16 @@
 
 /* -- notes.html -- */
+
+.note-container
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+/* -- Add button -- */
+
 .add-note-btn
 {
     position: fixed;
@@ -27,14 +38,7 @@
     transform: scale(1.1);
 }
 
-.note-container
-{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /*justify-content: center;*/
-    align-items: flex-start;
-}
+/* -- Sticky notes style -- */
 
 .stick-note
 {
@@ -73,6 +77,70 @@
 .stick-note:hover, .stick-public-note:hover
 {
     transform: scale(1.05);
+}
+
+/* -- public buttons -- */
+
+.btn-public
+{
+    color: var(--dark-theme);
+    background: var(--bg-public-note1);
+    border: 1px var(--bg-public-note1) solid;
+}
+
+.btn-public:hover
+{
+    color: var(--dark-theme);
+    background: var(--bg-public-note2);
+    border: 1px var(--bg-public-note2) solid;
+}
+
+.btn-outline-public
+{
+    color: var(--bg-public-note1);
+    border: 1px var(--bg-public-note1) solid;
+}
+
+.btn-outline-public:hover
+{
+    /*color: var(--dark-theme);*/
+    background: var(--bg-public-note1);
+    border: 1px var(--bg-public-note1) solid;
+}
+
+/* -- Category selection input -- */
+
+.select-category
+{
+    color: var(--text-color);
+    background: transparent !important;
+    border: var(--text-color) 1px solid;
+}
+.select-category:focus
+{
+    color: var(--text-color);
+}
+.select-category>option, .select-category-public>option
+{
+    color: var(--dark-theme);
+}
+
+.select-category-public
+{
+    color: var(--bg-public-note1);
+    background: transparent !important;
+    border: var(--bg-public-note1) 1px solid;
+}
+.select-category-public:focus
+{
+    color: var(--bg-public-note1);
+}
+
+.owner-signature, .category-signature
+{
+    color: var(--bg-category2);
+    font-weight: bold;
+/*    font-style: italic;*/
 }
 
 /* -- notes_add.html -- */ /* -- notes_update.html -- */
@@ -137,18 +205,3 @@
     color: var(--text-color);
 }
 
-.select-category
-{
-    color: var(--text-color);
-    background: transparent !important;
-    border: var(--text-color) 1px solid;
-}
-.select-category:focus
-{
-    color: var(--text-color);
-}
-.select-category>option
-{
-    color: var(--dark-theme);
-    /*background: var(--main-blue);*/
-}

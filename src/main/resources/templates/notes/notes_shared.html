@@ -16,16 +16,16 @@
 
             <form class="form-row-search" th:action="@{/notes/shared}" method="get">
                 <input th:type="search" id="search" name="keywords" class="form-control input-search" placeholder="Wyszukaj notatkę...">
-                <button type="submit" class="btn btn-warning search-btn">Szukaj</button>
+                <button type="submit" class="btn btn-public search-btn">Szukaj</button>
             </form>
 
             <div class="form-row-search">
                 <span>Sortuj według: </span>
-                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/shared/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
-                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/shared/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
+                <a class="btn btn-outline-light search-btn btn-outline-public" th:href="@{'/notes/shared/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
+                <a class="btn btn-outline-light search-btn btn-outline-public" th:href="@{'/notes/shared/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
 
                 <form class="form-row-search" th:action="@{/notes/shared/categories}" method="get" >
-                    <select class="form-control input-search select-category" name="categoryFilter" onchange="this.form.submit()">
+                    <select class="form-control input-search select-category-public" name="categoryFilter" onchange="this.form.submit()">
                         <option value="null">Wybierz kategorię</option>
                         <option th:each="cat : ${Categories}" th:text="${cat.name}"  th:value="${cat.name}">
                         </option>
@@ -42,13 +42,13 @@
 
                     <h2 th:text="${note.title}"></h2>
                     <p>
-                        <strong th:text="${note.category.name}"></strong>
+                        <strong th:text="${note.category.name}" class="category-signature"></strong>
                         (<span th:text="${#dates.format(note.dateOfUpload, 'dd-MM-yyyy')}"></span>)
                     </p>
                     <p th:text="${note.description}"></p>
                     <p>
                         <b>Właściciel: </b>
-                        <span th:text="${note.owner}"></span>
+                        <span th:text="${note.owner}" class="owner-signature"></span>
                     </p>
 
                 </div>

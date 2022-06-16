@@ -67,8 +67,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/contact"
         ).permitAll()
                 .antMatchers("/admin**").hasAuthority("ADMIN")
-                .antMatchers("/notes/shared", "/categories").hasAuthority("LIMITED_USER")
-                .antMatchers("/notes**", "/categories**").hasAuthority("FULL_USER")
+                .antMatchers("/notes/shared", "/categories").hasAnyAuthority("LIMITED_USER", "FULL_USER")
+                .antMatchers(" /notes**", "/categories**").hasAuthority("FULL_USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
