@@ -14,8 +14,7 @@
 
             <a th:href="@{/notes/add}" class="add-note-btn" sec:authorize="hasAnyAuthority('FULL_USER')">Dodaj nową</a>
 
-            <h1>Notatki</h1>
-            <!--<p th:text="${username}"></p>-->
+            <h1>Moje notatki</h1>
 
             <form class="form-row-search" th:action="@{/notes}" method="get">
                 <input th:type="search" id="search" name="keywords" class="form-control input-search" placeholder="Wyszukaj notatkę...">
@@ -43,9 +42,7 @@
 
                 <div th:unless="${ListNote == null}" th:each="note : ${ListNote}" class="stick-note">
 
-
-                    <!--<div th:if="${note.owner eq username}" class="stick-note" >-->
-                        <h2 th:text="${note.title}"></h2>
+                    <h2 th:text="${note.title}"></h2>
                     <p>
                         <strong th:text="${note.category.name}"></strong>
                         (<span th:text="${#dates.format(note.dateOfUpload, 'dd-MM-yyyy')}"></span>)
@@ -59,8 +56,6 @@
                         <a th:href="@{/notes/update/{id}(id=${note.id})}" class="btn btn-primary">Edytuj</a>
                         <a th:href="@{/notes/delete/{id}(id=${note.id})}" class="btn btn-danger">Usuń</a>
                     </p>
-                    <!--</div>-->
-
 
                 </div>
 

@@ -53,7 +53,24 @@
     transition: .5s ease-in-out;
 }
 
-.stick-note:hover
+.stick-public-note
+{
+    margin: 20px;
+    padding: 20px;
+    min-width: 200px;
+    max-width: 350px;
+    background: linear-gradient(330deg, var(--bg-public-note2) 30%, var(--bg-public-note1) 100%);
+
+    color: var(--bg-third);
+
+    -webkit-box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+    -moz-box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+    box-shadow: 5px 8px 30px -5px rgba(35, 36, 68, 0.9);
+
+    transition: .5s ease-in-out;
+}
+
+.stick-note:hover, .stick-public-note:hover
 {
     transform: scale(1.05);
 }

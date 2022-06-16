@@ -25,6 +25,64 @@ public class NoteController {
    private NoteCategoryServiceImpl categoryService;
 
 
+    /* -- PUBLIC notes page -- */
+
+    @GetMapping("/shared")
+    public String ViewAllSharedNotesPage(Model model, String keywords)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+
+        if(keywords !=null)
+            model.addAttribute("ListNote", noteService.getPublicNotesByKeywords(keywords));
+        else
+            model.addAttribute("ListNote", noteService.getPublicNotes("title", "asc"));
+
+        return "notes/notes_shared";
+    }
+
+    /* -- Sorted notes page -- */
+    @GetMapping("/shared/")
+    public String ViewAllSharedNotesPage(Model model, String keywords,
+                                   @RequestParam("sortField") String sortField,
+                                   @RequestParam("sortDir") String sortDir)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseDir", sortDir.equals("asc")? "desc": "asc");
+
+        if(sortField == null)
+            sortField = "title";
+
+        if(sortDir == null)
+            sortDir = "asc";
+
+        // list of notes page
+        if(keywords !=null)
+            model.addAttribute("ListNote", noteService.getPublicNotesByKeywords(keywords));
+        else
+            model.addAttribute("ListNote", noteService.getPublicNotes(sortField, sortDir));
+
+        return "notes/notes_shared";
+    }
+
+    /* -- Filtered by category notes page -- */
+    @GetMapping("/shared/categories")
+    public String ViewAllSharedNotesPage2(Model model, String categoryFilter)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+
+        List<Note> notes = noteService.getPublicNotesByCategory(categoryFilter);
+
+        if(notes.isEmpty())
+            model.addAttribute("ListNote", null);
+        else
+            model.addAttribute("ListNote", notes );
+
+        return "notes/notes_shared";
+    }
+
+
     /* -- Notes of specific OWNER -- */
 
     @GetMapping
@@ -47,8 +105,8 @@ public class NoteController {
     /* -- Sorted notes page -- */
     @GetMapping("/")
     public String ViewAllOwnerNotesPage(Model model, String keywords,
-                                   @RequestParam("sortField") String sortField,
-                                   @RequestParam("sortDir") String sortDir)
+                                        @RequestParam("sortField") String sortField,
+                                        @RequestParam("sortDir") String sortDir)
     {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String username = auth.getName();
@@ -93,10 +151,6 @@ public class NoteController {
 
         return "notes/notes";
     }
-
-    /* -- PUBLIC notes page -- */
-
-
 
     /* -- Add note -- */
 

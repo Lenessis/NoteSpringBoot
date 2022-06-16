@@ -12,22 +12,19 @@
     <body>
         <section layout:fragment="content">
 
-            <a th:href="@{/notes/add}" class="add-note-btn" sec:authorize="hasAnyAuthority('FULL_USER')">Dodaj nową</a>
+            <h1>Publiczne notatki</h1>
 
-            <h1>Notatki</h1>
-            <!--<p th:text="${username}"></p>-->
-
-            <form class="form-row-search" th:action="@{/notes}" method="get">
+            <form class="form-row-search" th:action="@{/notes/shared}" method="get">
                 <input th:type="search" id="search" name="keywords" class="form-control input-search" placeholder="Wyszukaj notatkę...">
                 <button type="submit" class="btn btn-warning search-btn">Szukaj</button>
             </form>
 
             <div class="form-row-search">
                 <span>Sortuj według: </span>
-                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
-                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
+                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/shared/?sortField=title&sortDir='+${reverseDir}}">Nazwa notatki</a>
+                <a class="btn btn-outline-light search-btn" th:href="@{'/notes/shared/?sortField=dateOfUpload&sortDir='+${reverseDir}}">Data przypisania</a>
 
-                <form class="form-row-search" th:action="@{/notes/categories}" method="get" >
+                <form class="form-row-search" th:action="@{/notes/shared/categories}" method="get" >
                     <select class="form-control input-search select-category" name="categoryFilter" onchange="this.form.submit()">
                         <option value="null">Wybierz kategorię</option>
                         <option th:each="cat : ${Categories}" th:text="${cat.name}"  th:value="${cat.name}">
@@ -41,11 +38,9 @@
                 <h2 class="container" th:text="${ListNote}? '': 'Brak notatek'"></h2>
 
 
-                <div th:unless="${ListNote == null}" th:each="note : ${ListNote}" class="stick-note">
+                <div th:unless="${ListNote == null}" th:each="note : ${ListNote}" class="stick-public-note">
 
-
-                    <!--<div th:if="${note.owner eq username}" class="stick-note" >-->
-                        <h2 th:text="${note.title}"></h2>
+                    <h2 th:text="${note.title}"></h2>
                     <p>
                         <strong th:text="${note.category.name}"></strong>
                         (<span th:text="${#dates.format(note.dateOfUpload, 'dd-MM-yyyy')}"></span>)
@@ -55,12 +50,6 @@
                         <b>Właściciel: </b>
                         <span th:text="${note.owner}"></span>
                     </p>
-                    <p sec:authorize="hasAnyAuthority('FULL_USER')">
-                        <a th:href="@{/notes/update/{id}(id=${note.id})}" class="btn btn-primary">Edytuj</a>
-                        <a th:href="@{/notes/delete/{id}(id=${note.id})}" class="btn btn-danger">Usuń</a>
-                    </p>
-                    <!--</div>-->
-
 
                 </div>
 
