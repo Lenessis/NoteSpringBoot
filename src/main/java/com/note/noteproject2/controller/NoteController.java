@@ -25,27 +25,35 @@ public class NoteController {
    private NoteCategoryServiceImpl categoryService;
 
 
-   /* -- Default notes page -- */
+    /* -- Notes of specific OWNER -- */
+
     @GetMapping
-    public String ViewAllNotesPage(Model model, String keywords)
+    public String ViewAllOwnerNotesPage(Model model, String keywords)
     {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        model.addAttribute("username", username);
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
 
-        // list of notes page
         if(keywords !=null)
-            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+            model.addAttribute("ListNote", noteService.getNotesByOwnerAndKeywords(username,keywords));
         else
-            model.addAttribute("ListNote", noteService.getAllNotes("title", "asc"));
+            model.addAttribute("ListNote", noteService.getNotesByOwner(username, "title", "asc"));
 
         return "notes/notes";
     }
 
     /* -- Sorted notes page -- */
     @GetMapping("/")
-    public String ViewAllNotesPage(Model model, String keywords,
+    public String ViewAllOwnerNotesPage(Model model, String keywords,
                                    @RequestParam("sortField") String sortField,
                                    @RequestParam("sortDir") String sortDir)
     {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        model.addAttribute("username", username);
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
@@ -59,19 +67,25 @@ public class NoteController {
 
         // list of notes page
         if(keywords !=null)
-            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+            model.addAttribute("ListNote", noteService.getNotesByOwnerAndKeywords(username,keywords));
         else
-            model.addAttribute("ListNote", noteService.getAllNotes(sortField,sortDir));
+            model.addAttribute("ListNote", noteService.getNotesByOwner(username, sortField, sortDir));
 
         return "notes/notes";
     }
 
     /* -- Filtered by category notes page -- */
     @GetMapping("/categories")
-    public String ViewAllNotesPage2(Model model, String categoryFilter)
+    public String ViewAllOwnerNotesPage2(Model model, String categoryFilter)
     {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
+
+        model.addAttribute("username", username);
         model.addAttribute("Categories", categoryService.getAllNoteCategories());
-        List<Note> notes = noteService.getNotesByCategory(categoryFilter);
+
+        List<Note> notes = noteService.getNotesByOwnerAndCategory(username, categoryFilter);
+
         if(notes.isEmpty())
             model.addAttribute("ListNote", null);
         else
@@ -79,6 +93,12 @@ public class NoteController {
 
         return "notes/notes";
     }
+
+    /* -- PUBLIC notes page -- */
+
+
+
+    /* -- Add note -- */
 
     @GetMapping("/add")
     public String AddNewNotePage(Model model)
@@ -127,13 +147,11 @@ public class NoteController {
         if(errors.hasErrors())
             return "notes/notes_update";
 
-
         else
         {
             noteService.saveNote(newNote);
             return "redirect:/notes";
         }
-
     }
 
     @GetMapping("/delete/{id}")
@@ -142,5 +160,71 @@ public class NoteController {
         this.noteService.deleteNoteById(id);
         return "redirect:/notes";
     }
+
+
+
+
+
+    /* -- Default notes page  - previous version; I won't delete it to leave some notes/ knowledge for future -- */
+
+    /*@GetMapping
+    public String ViewAllNotesPage(Model model, String keywords)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+
+        *//*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();*//*
+
+        //model.addAttribute("username", username);
+
+        // list of notes page
+        if(keywords !=null)
+            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+        else
+            model.addAttribute("ListNote", noteService.getAllNotes("title", "asc"));
+
+        return "notes/notes";
+    }
+
+    *//* -- Sorted notes page -- *//*
+    @GetMapping("/")
+    public String ViewAllNotesPage(Model model, String keywords,
+                                   @RequestParam("sortField") String sortField,
+                                   @RequestParam("sortDir") String sortDir)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseDir", sortDir.equals("asc")? "desc": "asc");
+
+        if(sortField == null)
+            sortField = "title";
+
+        if(sortDir == null)
+            sortDir = "asc";
+
+        // list of notes page
+        if(keywords !=null)
+            model.addAttribute("ListNote", noteService.getNotesByKeywords(keywords));
+        else
+            model.addAttribute("ListNote", noteService.getAllNotes(sortField,sortDir));
+
+        return "notes/notes";
+    }
+
+    *//* -- Filtered by category notes page -- *//*
+    @GetMapping("/categories")
+    public String ViewAllNotesPage2(Model model, String categoryFilter)
+    {
+        model.addAttribute("Categories", categoryService.getAllNoteCategories());
+        List<Note> notes = noteService.getNotesByCategory(categoryFilter);
+        if(notes.isEmpty())
+            model.addAttribute("ListNote", null);
+        else
+            model.addAttribute("ListNote", notes );
+
+        return "notes/notes";
+    }*/
+
 
 }

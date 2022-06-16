@@ -27,7 +27,8 @@
                     </a>
 
                     <ul class="navigation-bar">
-                        <li><a th:href="@{/notes}" sec:authorize="hasAnyAuthority('LIMITED_USER','FULL_USER')" class="navigation-element">Notatki</a></li>
+                        <li><a th:href="@{/notes/shared}" sec:authorize="hasAnyAuthority('LIMITED_USER','FULL_USER')" class="navigation-element"> Publiczne notatki</a></li>
+                        <li><a th:href="@{/notes}" sec:authorize="hasAnyAuthority('LIMITED_USER','FULL_USER')" class="navigation-element">Moje notatki</a></li>
                         <li><a th:href="@{/categories}" sec:authorize="hasAnyAuthority('LIMITED_USER','FULL_USER')" class="navigation-element">Kategorie</a></li>
                         <li><a th:href="@{/admin}" sec:authorize="hasAuthority('ADMIN')" class="navigation-element">Panel admina</a></li>
                         <li><a th:href="@{/authors}" sec:authorize="isAnonymous()" class="navigation-element">Autorzy</a></li>

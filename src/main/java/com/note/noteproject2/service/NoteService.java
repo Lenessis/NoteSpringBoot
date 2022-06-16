@@ -12,4 +12,12 @@ public interface NoteService {
     void deleteNoteById(long id);
     List<Note> getNotesByKeywords(String keywords);
     List<Note> getNotesByCategory(String categoryFilter);
+
+    List<Note> getNotesByOwner(String owner, String sortField, String sortDirection);
+    List<Note> getNotesByOwnerAndKeywords(String owner, String keywords);
+    List<Note> getNotesByOwnerAndCategory(String owner, String categoryFilter);
+
+    List<Note> getPublicNotes(String sortField, String sortDirection);
+    List<Note> getPublicNotesByKeywords(String keywords);
+    List<Note> getPublicNotesByCategory(String categoryFilter);
 }
